@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/conversation_room.css">
+    <title>Web Chat</title>
+  </head>
+  <body>
+
+    <header class="header">
+        <section class="logo">
+          <a href="#">
+            <img src="img/logo.png" alt="web chat brand logo">
+          </a>
+        </section>
+        <span class="connected_user" id="current_user">usuário atual</span>
+        <hr>
+    </header>
+
+    <section class="main">
+      <div class="connected_user_names">
+          <span>Usuários conectados:</span>
+          <ul class="connected_user_list">
+
+          </ul>
+      </div>
+
+      <div class="messages_container" id="messages_container">
+
+      </div>
+    </section>
+
+    <footer class="input_message">
+      <input type="text" name="inputMessageText" id="inputMessageText" placeholder="Envie uma mensagem...">
+      <button type="button" name="btnSendMessage" onclick="send_message_rest()">ok</button>
+    </footer>
+
+  </body>
+   <script src="js/conversation_room.js"></script>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/main.js"></script>
+    <title>Web Chat</title>
+  </head>
+  <body>
+
+      <header class="header">
+          <section class="logo">
+            <a href="#">
+              <img src="img/logo.png" alt="web chat brand logo">
+            </a>
+          </section>
+      </header>
+
+      <section class="main">
+        <div class="login">
+          <input type="text" name="login_user" id="user_name" value="" placeholder="Informe o nome de usuário">
+          <button type="button" name="btnLogin" onclick="login()">Entrar</button>
+        </div>
+        <div class="buttons">
+          <button type="button" name="btnRegister" onclick="register_new_user()">Cadastrar novo usuário</button>
+          <button type="button" name="btnRemoveAllUsers" onclick="remove_all_users()">Remover todos usuários</button>
+          <button type="button" name="btnRemoveAllMessages" onclick="remove_all_messages()">Remover todas as mensagens</button>
+        </div>
+      </section>
+
+  </body>
+</html>
