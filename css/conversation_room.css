@@ -3,6 +3,13 @@
   text-align: center;
 }
 
+.header hr {
+  background-color: blue;
+  color: blue;
+  height: 1px;
+  border-style: none;
+}
+
 .logo img {
   width: 35%;
   height: 35%;
@@ -26,6 +33,10 @@ ul.connected_user_list {
   display: inline-flex;
   margin: 0;
   padding: 0;
+}
+
+ul.connected_user_list li {
+  margin-left: 0.2em;
 }
 
 .messages_container {

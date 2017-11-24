@@ -12,6 +12,7 @@ function handle_user_actions(post_validation_action){
         if(post_validation_action == "login"){
            if(this.responseText.length > 21){
              localStorage.setItem("connected_user", document.getElementById("user_name").value);
+             document.getElementById("user_name").value = "";
              open('conversation_room.html', '_self')
            }
            else {

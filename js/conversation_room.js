@@ -1,13 +1,22 @@
+/* Global */
+var connected_user = "";
 
-/* Recupera o usuário conectado */
-var connected_user = localStorage.getItem("connected_user");
+/* Evento DOMContentLoaded */
+document.addEventListener('DOMContentLoaded', DOM_ready);
 
-/* Atualiza a tela a primeira vez */
-update_connected_user();
-get_users_and_messages();
+/* Função que será executada assim que a DOM estiver pronta, mais rapida que evento "load" */
+function DOM_ready(){
 
-/* Habilita timer para próximas atualizações a cada 2 segundos */
-setInterval(get_users_and_messages, 2000);
+  /* Recupera o usuário conectado */
+  connected_user = localStorage.getItem("connected_user");
+
+  /* Atualiza a tela a primeira vez */
+  update_connected_user();
+  get_users_and_messages();
+
+  /* Habilita timer para próximas atualizações a cada 2 segundos */
+  setInterval(get_users_and_messages, 2000);
+}
 
 function get_users_and_messages(){
   get_users_rest();
@@ -90,7 +99,7 @@ function send_message_rest(){
   oReq.onreadystatechange = function() {
     if (oReq.readyState == XMLHttpRequest.DONE) {
         /*Limpa mensagem da caixa de texto */
-        document.getElementById("inputMessageText").innerHTML = "";
+        document.getElementById("inputMessageText").value = "";
         get_messages_rest();
     }
   }
