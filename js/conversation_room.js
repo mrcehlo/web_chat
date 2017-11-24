@@ -23,6 +23,10 @@ function populate_user_list(){
   /* Acessa retorno de XMLHttpRequest */
   var users = JSON.parse(this.responseText);
 
+  var li = document.createElement("li");
+  li.innerHTML = 'Usuários conectados: ';
+  connected_user_list.appendChild(li);
+
   /* Percorre todos os itens retornados e popula lista */
   for(var i = 0; i < users.length; i++) {
       var li = document.createElement("li");
@@ -62,7 +66,7 @@ function get_messages_rest(){
 
            var span = document.createElement("span");
            span.className = "user_stamp";
-           span.innerHTML = '[' + messages[i].datetime + '] ' + messages[i].user ;
+           span.innerHTML = '<strong>[' + messages[i].datetime + ']</strong> ' + messages[i].user + ' diz: ' ;
            div.appendChild(span);
 
            var span2 = document.createElement("span");
