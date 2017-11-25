@@ -128,6 +128,7 @@ function close_message(){
 function verify_desconected_user(){
   var user_desconected = localStorage.getItem("user_desconected");
   if(user_desconected == "true"){
+    localStorage.setItem("user_desconected", false);
     show_message_box_error('O seu usuário foi desconectado.');
   }
 }
