@@ -16,12 +16,12 @@ function handle_user_actions(post_validation_action){
              open('conversation_room.html', '_self')
            }
            else {
-             alert('Usuário não cadastrado!')
+             show_message_box_info('Usuário não cadastrado!')
            }
         }
         else if (post_validation_action == "register") {
             if(this.responseText.length > 21){
-              alert('Usuário já cadastrado!')
+              show_message_box_info('Usuário já cadastrado!')
             }
             else{
 
@@ -34,7 +34,7 @@ function handle_user_actions(post_validation_action){
                       open('conversation_room.html', '_self')
                     }
                     else {
-                      alert('Falha ao registrar usuário. Retorno: ' + this.responseText)
+                      show_message_box_error('Falha ao registrar usuário. Retorno: ' + this.responseText)
                     }
                 }
               }
@@ -62,7 +62,7 @@ function remove_all_users(){
 
   oReq.onreadystatechange = function() {
       if (oReq.readyState == XMLHttpRequest.DONE) {
-        alert('Todos usuários foram removidos com sucesso!')
+        show_message_box_info('Todos usuários foram removidos com sucesso!')
     }
   }
 
@@ -75,10 +75,49 @@ function remove_all_messages(){
 
   oReq.onreadystatechange = function() {
       if (oReq.readyState == XMLHttpRequest.DONE) {
-        alert('Todas as mensagens foram removidas com sucesso!')
+        show_message_box_info('Todas as mensagens foram removidas com sucesso!');
     }
   }
 
   oReq.open("GET", "http://www.angelito.com.br/webchat/reset_messages");
   oReq.send();
+}
+
+function show_message(message, message_type){
+  var message_box = document.getElementById("message_box");
+
+  if(message_box != undefined){
+    close_message();
+  }
+
+  var header_selector = document.getElementsByClassName("header")[0];
+
+  var divMessage = document.createElement("div");
+  divMessage.className = "message_generic " + message_type;
+  divMessage.setAttribute("id", "message_box");
+
+  var spanMessage = document.createElement("span");
+  spanMessage.innerHTML = message;
+
+  var closeButton = document.createElement("button");
+  closeButton.innerHTML = "X";
+  closeButton.setAttribute("onclick", "close_message()");
+
+  divMessage.appendChild(spanMessage);
+  divMessage.appendChild(closeButton);
+  header_selector.appendChild(divMessage);
+
+}
+
+function show_message_box_info(message){
+  show_message(message, "message_info");
+}
+
+function show_message_box_error(message){
+  show_message(message, "message_error");
+}
+
+function close_message(){
+  var message_box = document.getElementById("message_box");
+  message_box.parentNode.removeChild(message_box);
 }

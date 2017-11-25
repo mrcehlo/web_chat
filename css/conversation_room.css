@@ -1,6 +1,9 @@
 
 .header {
   text-align: center;
+  position: sticky;
+  top: 0px;
+  background-color: white;
 }
 
 .header hr {

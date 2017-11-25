@@ -1,5 +1,7 @@
 /* Global */
 var connected_user = "";
+var number_of_connected_users = 0;
+var number_of_messages = 0;
 
 /* Evento DOMContentLoaded */
 document.addEventListener('DOMContentLoaded', DOM_ready);
@@ -26,21 +28,24 @@ function get_users_and_messages(){
 /* Popula usuários conectados na lista via manipulação dos elementos HTML*/
 function populate_user_list(){
   var connected_user_list = document.getElementsByClassName("connected_user_list")[0];
-
-  connected_user_list.innerHTML = "";
-
   /* Acessa retorno de XMLHttpRequest */
   var users = JSON.parse(this.responseText);
 
-  var li = document.createElement("li");
-  li.innerHTML = 'Usuários conectados: ';
-  connected_user_list.appendChild(li);
+  if(users.length != number_of_connected_users){
+    number_of_connected_users = users.length;
 
-  /* Percorre todos os itens retornados e popula lista */
-  for(var i = 0; i < users.length; i++) {
-      var li = document.createElement("li");
-      li.innerHTML = users[i] + ' |';
-      connected_user_list.appendChild(li);
+    connected_user_list.innerHTML = "";
+
+    var li = document.createElement("li");
+    li.innerHTML = 'Usuários conectados: ';
+    connected_user_list.appendChild(li);
+
+    /* Percorre todos os itens retornados e popula lista */
+    for(var i = 0; i < users.length; i++) {
+        var li = document.createElement("li");
+        li.innerHTML = users[i] + ' |';
+        connected_user_list.appendChild(li);
+    }
   }
 };
 
@@ -67,24 +72,28 @@ function get_messages_rest(){
        var messages = JSON.parse(this.responseText);
        var messages_selector = document.getElementById("messages_container");
 
-       messages_selector.innerHTML = "";
+       if(messages.length != number_of_messages){
+         number_of_messages = messages.length;
+         messages_selector.innerHTML = "";
 
-       for(var i = 0; i < messages.length; i++) {
-           var div = document.createElement("div");
-           div.className = "conversation_messages";
+         for(var i = 0; i < messages.length; i++) {
+             var div = document.createElement("div");
+             div.className = "conversation_messages";
 
-           var span = document.createElement("span");
-           span.className = "user_stamp";
-           span.innerHTML = '<strong>[' + messages[i].datetime + ']</strong> ' + messages[i].user + ' diz: ' ;
-           div.appendChild(span);
+             var span = document.createElement("span");
+             span.className = "user_stamp";
+             span.innerHTML = '<strong>[' + messages[i].datetime + ']</strong> ' + messages[i].user + ' diz: ' ;
+             div.appendChild(span);
 
-           var span2 = document.createElement("span");
-           span2.className = "user_message";
-           span2.innerHTML = messages[i].textmsg ;
-           div.appendChild(span2);
+             var span2 = document.createElement("span");
+             span2.className = "user_message";
+             span2.innerHTML = messages[i].textmsg ;
+             div.appendChild(span2);
 
-           messages_selector.appendChild(div);
-       }
+             messages_selector.appendChild(div);
+         }
+         window.scrollTo(0, document.querySelector(".messages_container").scrollHeight);
+      }
      }
    }
 

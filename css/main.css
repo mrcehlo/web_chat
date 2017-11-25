@@ -14,7 +14,38 @@ html, body {
 .header {
   padding-top: 1em;
   margin-top: 5em;
-  margin-bottom: 1em;
+  padding-bottom: 1em;
+}
+
+.message_generic {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 30px;
+  border-radius: 10px;
+  border-width: thin;
+  opacity: 0.8;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.message_generic button{
+  position: absolute;
+  right: 5px;
+  top: 1px;
+  height: 90%;
+  background-color: transparent;
+}
+
+.message_info {
+  border-color: blue;
+  background-color: #99c2ff;
+}
+
+.message_error {
+  border-color: red;
+  background-color: #f20e0e;
 }
 
 .logo {
@@ -28,22 +59,24 @@ html, body {
 .login button {
   width: 14%;
   height: 25px;
+  color: white;
+  background-color: #99c2ff;
 }
 
 .buttons button {
   width: 100%;
   padding-top: 5px;
   padding-bottom: 5px;
-  margin-top: 5px;
+  margin-top: 10px;
   height: 35px;
   font-size: 14pt;
+  background-color: transparent;
+  border-color: #99c2ff;
 }
 
 button {
   border-radius: 5px;
   border-width: thin;
-  color: white;
-  background-color: #99c2ff;
 }
 
 input {
