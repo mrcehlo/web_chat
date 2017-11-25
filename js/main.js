@@ -1,4 +1,7 @@
 
+/* Evento DOMContentLoaded */
+document.addEventListener('DOMContentLoaded', verify_desconected_user);
+
 /* Função para realizar o Login e o Cadastro de novos usuários
    Caso o Login e/ou cadastro aconteça com sucesso, abre a página do chat
 */
@@ -120,4 +123,11 @@ function show_message_box_error(message){
 function close_message(){
   var message_box = document.getElementById("message_box");
   message_box.parentNode.removeChild(message_box);
+}
+
+function verify_desconected_user(){
+  var user_desconected = localStorage.getItem("user_desconected");
+  if(user_desconected == "true"){
+    show_message_box_error('O seu usuário foi desconectado.');
+  }
 }

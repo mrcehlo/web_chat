@@ -12,6 +12,11 @@ function DOM_ready(){
   /* Recupera o usuário conectado */
   connected_user = localStorage.getItem("connected_user");
 
+  /* Valida se o usuário foi informado */
+  if(connected_user == "undefined"){
+    open('index.html', '_self');
+  }
+
   /* Atualiza a tela a primeira vez */
   update_connected_user();
   get_users_and_messages();
@@ -107,9 +112,16 @@ function send_message_rest(){
 
   oReq.onreadystatechange = function() {
     if (oReq.readyState == XMLHttpRequest.DONE) {
-        /*Limpa mensagem da caixa de texto */
-        document.getElementById("inputMessageText").value = "";
-        get_messages_rest();
+        /*Verifica se o usuário foi desconectado */
+        if(this.responseText != 'Erro enviando mensagem. Usuário desconectado.' ){
+          /*Limpa mensagem da caixa de texto */
+          document.getElementById("inputMessageText").value = "";
+          get_messages_rest();
+        }
+        else {
+          localStorage.setItem("user_desconected", true);
+          open('index.html', '_self');
+        }
     }
   }
 
